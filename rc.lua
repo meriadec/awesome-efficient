@@ -49,7 +49,7 @@ local function run_once(cmd)
   awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd))
 end
 
-run_once("urxvtd")
+run_once("termite")
 run_once("unclutter -root")
 -- }}}
 
@@ -60,7 +60,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 -- common
 local modkey     = "Mod4"
 local altkey     = "Mod1"
-local terminal   = "urxvtc"
+local terminal   = "termite"
 local editor     = "nvim"
 
 -- user defined
@@ -408,14 +408,14 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "n", function () awful.client.swap.byidx( -1)    end),
 
     -- Resizing & Moving (for floating client)
-   awful.key({ modkey, "Shift" }, "Left",  function () awful.client.moveresize( 0, 0, -40, 0) end),
-   awful.key({ modkey, "Shift" }, "Right", function () awful.client.moveresize( 0, 0,  40, 0) end),
-   awful.key({ modkey, "Shift" }, "Up",    function () awful.client.moveresize( 0, 0, 0, -40) end),
-   awful.key({ modkey, "Shift" }, "Down",  function () awful.client.moveresize( 0, 0, 0,  40) end),
-   awful.key({ modkey, "Control" }, "Down",  function () awful.client.moveresize(  0,  20,   0,   0) end),
-   awful.key({ modkey, "Control" }, "Up",    function () awful.client.moveresize(  0, -20,   0,   0) end),
-   awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize(-20,   0,   0,   0) end),
-   awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 20,   0,   0,   0) end),
+   awful.key({ modkey, "Shift" }, "Left",  function () awful.client.moveresize( 0, 0, -1, 0) end),
+   awful.key({ modkey, "Shift" }, "Right", function () awful.client.moveresize( 0, 0,  1, 0) end),
+   awful.key({ modkey, "Shift" }, "Up",    function () awful.client.moveresize( 0, 0, 0, -1) end),
+   awful.key({ modkey, "Shift" }, "Down",  function () awful.client.moveresize( 0, 0, 0,  1) end),
+   awful.key({ modkey, "Control" }, "Down",  function () awful.client.moveresize(  0,  1,   0,   0) end),
+   awful.key({ modkey, "Control" }, "Up",    function () awful.client.moveresize(  0, -1,   0,   0) end),
+   awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize(-1,   0,   0,   0) end),
+   awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 1,   0,   0,   0) end),
 
     awful.key({ altkey,           }, "Tab",
         function ()
@@ -433,20 +433,16 @@ globalkeys = awful.util.table.join(
         end
     end),
 
-    -- On the fly useless gaps change
-    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end),
-    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end),
-
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
 
-    awful.key({ modkey, "Control"    }, "s",     function () awful.tag.incmwfact( 0.02)    end),
-    awful.key({ modkey, "Control"    }, "h",     function () awful.tag.incmwfact(-0.02)    end),
-    awful.key({ modkey, "Control"    }, "t",     function () awful.client.incwfact( 0.03)    end),
-    awful.key({ modkey, "Control"    }, "n",     function () awful.client.incwfact(-0.03)    end),
+    awful.key({ modkey, "Control"    }, "s",     function () awful.tag.incmwfact( 0.005)    end),
+    awful.key({ modkey, "Control"    }, "h",     function () awful.tag.incmwfact(-0.005)    end),
+    awful.key({ modkey, "Control"    }, "t",     function () awful.client.incwfact( 0.02)    end),
+    awful.key({ modkey, "Control"    }, "n",     function () awful.client.incwfact(-0.02)    end),
 
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
               {description = "select next", group = "layout"}),

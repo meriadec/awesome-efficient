@@ -3,7 +3,7 @@ local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome"
 theme.wallpaper                                 = theme.dir .. "/wallpaper.png"
 
-theme.font                                      = "Fira Code 7"
+theme.font                                      = "Misc Tamsyn 8"
 theme.fg_normal                                 = "#586e75"
 theme.fg_focus                                  = "#232730"
 theme.fg_urgent                                 = "#CC9393"
