@@ -8,8 +8,7 @@ local freedesktop   = require("freedesktop")
 local awful         = require("awful")
                       require("awful.autofocus")
 
-local topBarHeight = 35
-if os.getenv("HIDPI") == "1" then topBarHeight = 60 end
+local topBarHeight = 60
 
 if awesome.startup_errors then
   naughty.notify({
@@ -347,6 +346,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "c", function () awful.spawn(browser) end),
     awful.key({ modkey }, "l", function () awful.util.spawn("slock", false) end),
     awful.key({ modkey }, "r", function () awful.util.spawn("rofi -show run", false) end),
+    awful.key({ modkey, "Shift" }, "r", function () awful.util.spawn("rofi -show window", false) end),
     awful.key({ modkey }, "-", function () awful.util.spawn("s", false) end),
     awful.key({ modkey, "Shift" }, "-", function () awful.spawn.with_shell("escrotum -s '%Y-%m-%d_$wx$h.png' | xargs add-shadow", false) end)
 )
@@ -462,12 +462,12 @@ end)
 
 local setSmartBorders = function(c, firstRender)
 
-  local b_string_color = gears.color("#ffffff33")
-  local b_arrow_color = gears.color("#ffffffcc")
-  local b_weight = 6
-  local b_string_weight = 2
-  local b_gutter = 12
-  local b_arrow = 60
+  local b_string_color = gears.color("#2a2a2a")
+  local b_arrow_color = gears.color("#2a2a2a")
+  local b_weight = 15
+  local b_string_weight = 4
+  local b_gutter = 20
+  local b_arrow = 120
 
   if c.floating then
     b_weight = 0
@@ -574,8 +574,8 @@ local setSmartBorders = function(c, firstRender)
 
 end
 
--- client.connect_signal("request::titlebars", function(c) setSmartBorders(c, true) end)
--- client.connect_signal("property::size", setSmartBorders)
+client.connect_signal("request::titlebars", function(c) setSmartBorders(c, true) end)
+client.connect_signal("property::size", setSmartBorders)
 
 client.connect_signal("mouse::enter", function(c)
   if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
