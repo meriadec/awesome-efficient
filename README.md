@@ -3,6 +3,6 @@ awesome-sombra
 
 Awesome 3.5 theme
 
-# Installation
+## Installation
 
     git clone https://github.com/meriadec/awesome-sombra ~/.config/awesome
