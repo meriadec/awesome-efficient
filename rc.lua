@@ -54,7 +54,7 @@ run_once("unclutter")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/sombra/theme.lua")
 
 -- common
 modkey     = "Mod4"
@@ -515,7 +515,6 @@ globalkeys = awful.util.table.join(
             mpdwidget.update()
         end),
 
-    --[[
     -- Copy to clipboard
     awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
 
@@ -534,7 +533,6 @@ globalkeys = awful.util.table.join(
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
               end)
-    ]]
 )
 
 clientkeys = awful.util.table.join(
