@@ -377,31 +377,15 @@ globalkeys = awful.util.table.join(
 
    -- resizing
    awful.key({ modkey, "Shift" }, "Left",  function () awful.client.moveresize( 0, 0, -40, 0) end),
-   awful.key({ modkey, "Shift" }, "Right", function ()    awful.client.moveresize( 0, 0,  40, 0) end),
-   awful.key({ modkey, "Shift" }, "Up",  function () awful.client.moveresize( 0, 0, 0, -40) end),
-   awful.key({ modkey, "Shift" }, "Down", function () awful.client.moveresize( 0, 0, 0,  40) end),
+   awful.key({ modkey, "Shift" }, "Right", function () awful.client.moveresize( 0, 0,  40, 0) end),
+   awful.key({ modkey, "Shift" }, "Up",    function () awful.client.moveresize( 0, 0, 0, -40) end),
+   awful.key({ modkey, "Shift" }, "Down",  function () awful.client.moveresize( 0, 0, 0,  40) end),
 
    -- moving
    awful.key({ modkey, "Control" }, "Down",  function () awful.client.moveresize(  0,  20,   0,   0) end),
    awful.key({ modkey, "Control" }, "Up",    function () awful.client.moveresize(  0, -20,   0,   0) end),
    awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize(-20,   0,   0,   0) end),
    awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 20,   0,   0,   0) end),
-
-    -- Non-empty tag browsing
-    awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end),
-    awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
-
-    -- Default client focus
-    awful.key({ altkey }, "k",
-        function ()
-            awful.client.focus.byidx( 1)
-            if client.focus then client.focus:raise() end
-        end),
-    awful.key({ altkey }, "j",
-        function ()
-            awful.client.focus.byidx(-1)
-            if client.focus then client.focus:raise() end
-        end),
 
     -- By direction client focus
     awful.key({ modkey }, "j",
@@ -539,9 +523,8 @@ clientkeys = awful.util.table.join(
     awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
     awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),
 
-    awful.key({ modkey, "Control" }, "space",  function (c)
+    awful.key({ modkey, "Control" }, "space",  function ()
       awful.client.floating.toggle()
-      c.ontop = not c.ontop
     end),
 
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
