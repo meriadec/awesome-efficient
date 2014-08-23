@@ -85,7 +85,7 @@ local layouts = {
 -- {{{ Tags
 tags = {
    names = { "a", "b", "c", "d", "e"},
-   layout = { layouts[4], layouts[4], layouts[4], layouts[4], layouts[1] }
+   layout = { layouts[5], layouts[5], layouts[5], layouts[5], layouts[1] }
 }
 
 for s = 1, screen.count() do
