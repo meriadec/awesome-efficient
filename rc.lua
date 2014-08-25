@@ -85,7 +85,7 @@ local layouts = {
 -- {{{ Tags
 tags = {
    names = { "a", "b", "c", "d", "e"},
-   layout = { layouts[5], layouts[5], layouts[5], layouts[5], layouts[1] }
+   layout = { layouts[4], layouts[4], layouts[4], layouts[4], layouts[1] }
 }
 
 for s = 1, screen.count() do
@@ -114,52 +114,6 @@ mytextclock = awful.widget.textclock(markup("#444", " %a %d %b  %H:%M"))
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
-
--- Mail IMAP check
-mailicon = wibox.widget.imagebox(beautiful.widget_mail)
-mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
---[[ commented because it needs to be set before use
-mailwidget = wibox.widget.background(lain.widgets.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            widget:set_text(" " .. mailcount .. " ")
-            mailicon:set_image(beautiful.widget_mail_on)
-        else
-            widget:set_text("")
-            mailicon:set_image(beautiful.widget_mail)
-        end
-    end
-}), "#313131")
-]]
-
--- MPD
---[[
-mpdicon = wibox.widget.imagebox(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-mpdwidget = lain.widgets.mpd({
-    settings = function()
-        if mpd_now.state == "play" then
-            artist = " " .. mpd_now.artist .. " "
-            title  = mpd_now.title  .. " "
-            mpdicon:set_image(beautiful.widget_music_on)
-        elseif mpd_now.state == "pause" then
-            artist = " mpd "
-            title  = "paused "
-        else
-            artist = ""
-            title  = ""
-            mpdicon:set_image(beautiful.widget_music)
-        end
-
-        widget:set_markup(markup("#EA6F81", artist) .. title)
-    end
-})
-mpdwidgetbg = wibox.widget.background(mpdwidget, "#313131")
-]]
 
 -- MEM
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
@@ -598,7 +552,7 @@ awful.rules.rules = {
                      focus = awful.client.focus.filter,
                      keys = clientkeys,
                      buttons = clientbuttons,
-	                   size_hints_honor = false } },
+                     size_hints_honor = false } },
     { rule = { class = "URxvt" },
           properties = { opacity = 0.99 } },
 
@@ -614,8 +568,8 @@ awful.rules.rules = {
     { rule = { instance = "plugin-container" },
           properties = { tag = tags[1][1] } },
 
-	  { rule = { class = "Gimp" },
-     	    properties = { tag = tags[1][4] } },
+    { rule = { class = "Gimp" },
+          properties = { tag = tags[1][4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized_horizontal = true,

@@ -12,7 +12,7 @@ theme.darkgray                      = "#222222"
 theme.gray                          = "#444"
 
 theme.font                          = "Tamsyn 9"
-theme.useless_gap_width = 10
+theme.useless_gap_width             = 3
 
 theme.fg_normal                     = theme.yolo
 theme.fg_focus                      = theme.darkgray
@@ -20,9 +20,10 @@ theme.fg_urgent                     = "#CC9393"
 theme.bg_normal                     = "#1A1A1A"
 theme.bg_focus                      = theme.yolo
 theme.bg_urgent                     = "#1A1A1A"
-theme.border_width                  = "0"
+theme.border_width                  = "2"
 theme.border_normal                 = "#000000"
 theme.border_focus                  = "#D8D782"
+theme.border_focus                  = theme.yolo
 theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
