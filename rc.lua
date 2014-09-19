@@ -82,7 +82,7 @@ local layouts = {
 
 -- {{{ Tags
 tags = {
-   names = { " ", " ", " ", " ", " "},
+   names = { "1", "2", "3", "4", "5"},
    layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[1] }
 }
 
