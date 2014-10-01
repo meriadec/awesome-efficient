@@ -74,9 +74,9 @@ musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
 local layouts = {
   awful.layout.suit.floating,
-  awful.layout.suit.fair,
-  awful.layout.suit.tile,
-  awful.layout.suit.fair.horizontal
+  lain.layout.uselessfair,
+  lain.layout.uselesstile,
+  lain.layout.uselessfair.horizontal
 }
 -- }}}
 
@@ -108,7 +108,7 @@ markup = lain.util.markup
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-mytextclock = awful.widget.textclock(markup("#444", " %a %d %b  %H:%M"))
+mytextclock = awful.widget.textclock(markup("#b58900", " %a %d %b  %H:%M"))
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })

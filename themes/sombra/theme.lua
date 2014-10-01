@@ -7,34 +7,51 @@ theme                               = {}
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/sombra"
 theme.wallpaper                     = themes_dir .. "/green.jpg"
 
-theme.yolo                          = "#793A41"
-theme.darkgray                      = "#222222"
-theme.gray                          = "#444"
+theme.darkgray                      = "#002b36"
+theme.gray                          = "#657b83"
+theme.base01                        = "#586e75"
+
+theme.S_base03                      = "#002b36"
+theme.S_base02                      = "#073642"
+theme.S_base01                      = "#586e75"
+theme.S_base00                      = "#657b83"
+theme.S_base0                       = "#839496"
+theme.S_base1                       = "#93a1a1"
+theme.S_base2                       = "#eee8d5"
+theme.S_base3                       = "#fdf6e3"
+theme.S_yellow                      = "#b58900"
+theme.S_orange                      = "#cb4b16"
+theme.S_red                         = "#dc322f"
+theme.S_magenta                     = "#d33682"
+theme.S_violet                      = "#6c71c4"
+theme.S_blue                        = "#268bd2"
+theme.S_cyan                        = "#2aa198"
+theme.S_green                       = "#859900"
 
 theme.font                          = "Tamsyn 9"
-theme.useless_gap_width             = 3
+theme.useless_gap_width             = 10
 
-theme.fg_normal                     = theme.yolo
+theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.darkgray
 theme.fg_urgent                     = "#CC9393"
 theme.bg_normal                     = "#1A1A1A"
-theme.bg_focus                      = theme.yolo
+theme.bg_focus                      = theme.S_yellow
 theme.bg_urgent                     = "#1A1A1A"
 theme.border_width                  = "2"
-theme.border_normal                 = "#000000"
+theme.border_normal                 = theme.gray
 theme.border_focus                  = "#D8D782"
-theme.border_focus                  = theme.yolo
+theme.border_focus                  = theme.S_yellow
 theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
 
-theme.taglist_fg_focus              = "#000000"
-theme.taglist_bg_focus              = theme.yolo
-theme.taglist_bg_normal             = "#000"
+theme.taglist_fg_focus              = theme.S_yellow
+theme.taglist_bg_focus              = theme.S_base02
+theme.taglist_bg_normal             = theme.base01
 
-theme.tasklist_bg_focus             = theme.darkgray
-theme.tasklist_fg_focus             = theme.yolo
-theme.tasklist_fg_normal            = theme.gray
+theme.tasklist_bg_focus             = theme.S_base02
+theme.tasklist_fg_focus             = theme.S_yellow
+theme.tasklist_fg_normal            = theme.S_base00
 
 theme.textbox_widget_margin_top     = 0
 theme.notify_fg                     = theme.fg_normal
