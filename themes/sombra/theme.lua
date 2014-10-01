@@ -48,7 +48,7 @@ theme.taglist_fg_focus              = theme.S_yellow
 theme.taglist_bg_focus              = theme.S_base02
 theme.taglist_bg_normal             = theme.base01
 
-theme.tasklist_bg_focus             = theme.S_base02
+theme.tasklist_bg_focus             = "#1E1E1E"
 theme.tasklist_fg_focus             = theme.S_yellow
 theme.tasklist_fg_normal            = theme.S_base00
 
