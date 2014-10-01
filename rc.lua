@@ -64,7 +64,7 @@ editor     = os.getenv("EDITOR") or "nano" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
-browser    = "chromium"
+browser    = "google-chrome-unstable"
 browser2   = "dwb"
 gui_editor = "vim"
 graphics   = "gimp"
@@ -324,7 +324,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "Escape", awful.tag.history.restore),
 
 	-- launch
-   awful.key({ modkey }, "c",  function () awful.util.spawn("chromium") end),
+   awful.key({ modkey }, "c",  function () awful.util.spawn(browser) end),
    awful.key({ modkey }, "d",  function () awful.util.spawn("dwb") end),
 
    -- resizing
