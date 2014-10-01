@@ -5,7 +5,7 @@
 theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/sombra"
-theme.wallpaper                     = themes_dir .. "/arch.jpg"
+theme.wallpaper                     = themes_dir .. "/green.jpg"
 
 theme.yolo                          = "#793A41"
 theme.darkgray                      = "#222222"
