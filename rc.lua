@@ -55,7 +55,8 @@ local layouts = {
   awful.layout.suit.floating,
   lain.layout.uselessfair,
   lain.layout.uselesstile,
-  lain.layout.uselessfair.horizontal
+  lain.layout.uselessfair.horizontal,
+  lain.layout.centerwork
 }
 -- }}}
 
