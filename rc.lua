@@ -83,8 +83,8 @@ end
 
 -- {{{ Tags
 tags = {
-   names = { "1", "2", "3", "4", "5"},
-   layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[1] }
+   names = { "1", "2", "3", "4", "5", "6" },
+   layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
 }
 
 for s = 1, screen.count() do
