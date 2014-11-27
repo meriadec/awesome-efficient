@@ -327,7 +327,6 @@ globalkeys = awful.util.table.join(
 
 	-- launch
    awful.key({ modkey }, "c",  function () awful.util.spawn(browser) end),
-   awful.key({ modkey }, "d",  function () awful.util.spawn("dwb") end),
 
    -- resizing
    awful.key({ modkey, "Shift" }, "Left",  function () awful.client.moveresize( 0, 0, -40, 0) end),
