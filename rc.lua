@@ -327,7 +327,6 @@ globalkeys = awful.util.table.join(
 
 	-- launch
    awful.key({ modkey }, "c",  function () awful.util.spawn(browser) end),
-   awful.key({ modkey }, "d",  function () awful.util.spawn("dwb") end),
 
    -- resizing
    awful.key({ modkey, "Shift" }, "Left",  function () awful.client.moveresize( 0, 0, -40, 0) end),
@@ -342,22 +341,22 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 20,   0,   0,   0) end),
 
     -- By direction client focus
-    awful.key({ modkey }, "j",
+    awful.key({ modkey }, "h",
         function()
             awful.client.focus.bydirection("down")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "k",
+    awful.key({ modkey }, "t",
         function()
             awful.client.focus.bydirection("up")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "h",
+    awful.key({ modkey }, "d",
         function()
             awful.client.focus.bydirection("left")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "l",
+    awful.key({ modkey }, "n",
         function()
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
@@ -375,8 +374,8 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Layout manipulation
-    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
-    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
+    awful.key({ modkey, "Shift"   }, "h", function () awful.client.swap.byidx(  1)    end),
+    awful.key({ modkey, "Shift"   }, "t", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
@@ -456,21 +455,8 @@ globalkeys = awful.util.table.join(
     -- Copy to clipboard
     awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
 
-    -- User programs
-    awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
-    awful.key({ modkey }, "i", function () awful.util.spawn(browser2) end),
-    awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
-    awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
-
     -- Prompt
-    awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
-    awful.key({ modkey }, "x",
-              function ()
-                  awful.prompt.run({ prompt = "Run Lua code: " },
-                  mypromptbox[mouse.screen].widget,
-                  awful.util.eval, nil,
-                  awful.util.getdir("cache") .. "/history_eval")
-              end)
+    awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end)
 )
 
 clientkeys = awful.util.table.join(
@@ -483,7 +469,7 @@ clientkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
     awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),
-    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),
+    awful.key({ modkey,           }, "p",      function (c) c.ontop = not c.ontop            end),
     awful.key({ modkey,           }, "n",
         function (c)
             -- The client currently has the input focus, so it cannot be
