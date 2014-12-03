@@ -44,8 +44,8 @@ theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
 
-theme.taglist_fg_focus              = theme.S_yellow
-theme.taglist_bg_focus              = theme.S_base02
+theme.taglist_fg_focus              = theme.darkgray
+theme.taglist_bg_focus              = theme.S_base01
 theme.taglist_bg_normal             = theme.base01
 
 theme.tasklist_bg_focus             = "#1E1E1E"
