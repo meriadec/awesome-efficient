@@ -54,9 +54,8 @@ musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 local layouts = {
   awful.layout.suit.floating,
   lain.layout.uselessfair,
-  lain.layout.uselesstile,
   lain.layout.uselessfair.horizontal,
-  lain.layout.centerwork
+  lain.layout.uselesstile
 }
 -- }}}
 
@@ -84,8 +83,8 @@ end
 
 -- {{{ Tags
 tags = {
-   names = { "1", "2", "3", "4", "5", "6" },
-   layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+   names = { "1", "2", "3", "4", "5", "6", "7" },
+   layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
 }
 
 for s = 1, screen.count() do
