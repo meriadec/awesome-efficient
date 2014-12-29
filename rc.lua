@@ -39,7 +39,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/sombra/theme.lua")
 modkey     = "Mod4"
 altkey     = "Mod1"
 terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
+editor     = os.getenv("EDITOR") or "vim" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
