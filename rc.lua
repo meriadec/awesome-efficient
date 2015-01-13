@@ -355,12 +355,12 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 20,   0,   0,   0) end),
 
     -- By direction client focus
-    awful.key({ modkey }, "j",
+    awful.key({ modkey }, "t",
         function()
             awful.client.focus.bydirection("down")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "k",
+    awful.key({ modkey }, "n",
         function()
             awful.client.focus.bydirection("up")
             if client.focus then client.focus:raise() end
@@ -370,7 +370,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.bydirection("left")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey }, "l",
+    awful.key({ modkey }, "s",
         function()
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
