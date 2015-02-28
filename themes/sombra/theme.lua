@@ -35,11 +35,11 @@ theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.darkgray
 theme.fg_urgent                     = "#CC9393"
 theme.bg_normal                     = "#1A1A1A"
-theme.bg_focus                      = theme.S_yellow
+theme.bg_focus                      = theme.S_green
 theme.bg_urgent                     = "#1A1A1A"
 theme.border_width                  = "1"
 theme.border_normal                 = theme.S_base02
-theme.border_focus                  = theme.S_yellow
+theme.border_focus                  = theme.S_green
 theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
@@ -49,7 +49,7 @@ theme.taglist_bg_focus              = theme.S_base01
 theme.taglist_bg_normal             = theme.base01
 
 theme.tasklist_bg_focus             = "#1E1E1E"
-theme.tasklist_fg_focus             = theme.S_yellow
+theme.tasklist_fg_focus             = theme.S_green
 theme.tasklist_fg_normal            = theme.S_base00
 
 theme.textbox_widget_margin_top     = 0
