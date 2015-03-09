@@ -52,10 +52,9 @@ iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
 musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
 local layouts = {
-  awful.layout.suit.floating,
   lain.layout.uselessfair,
-  lain.layout.uselessfair.horizontal,
-  lain.layout.uselesstile
+  lain.layout.uselesstile,
+  lain.layout.uselessfair.horizontal
 }
 -- }}}
 
@@ -84,7 +83,15 @@ end
 -- {{{ Tags
 tags = {
    names = { "1", "2", "3", "4", "5", "6", "7" },
-   layout = { layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2], layouts[2] }
+   layout = {
+     layouts[1],
+     layouts[1],
+     layouts[1],
+     layouts[1],
+     layouts[1],
+     layouts[1],
+     layouts[1]
+   }
 }
 
 for s = 1, screen.count() do
