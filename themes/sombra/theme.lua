@@ -29,7 +29,7 @@ theme.S_cyan                        = "#2aa198"
 theme.S_green                       = "#859900"
 
 theme.font                          = "Tamsyn 9"
-theme.useless_gap_width             = 2
+theme.useless_gap_width             = 0
 
 theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.darkgray
@@ -37,7 +37,7 @@ theme.fg_urgent                     = "#CC9393"
 theme.bg_normal                     = "#1A1A1A"
 theme.bg_focus                      = theme.S_green
 theme.bg_urgent                     = "#1A1A1A"
-theme.border_width                  = 1
+theme.border_width                  = 0
 theme.border_normal                 = theme.S_base02
 theme.border_focus                  = theme.S_green
 theme.border_marked                 = "#CC9393"
