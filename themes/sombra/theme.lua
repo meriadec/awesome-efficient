@@ -5,7 +5,7 @@
 theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/sombra"
-theme.wallpaper                     = themes_dir .. "/green_alt.jpg"
+theme.wallpaper                     = themes_dir .. "/gray.jpg"
 
 theme.darkgray                      = "#002b36"
 theme.gray                          = "#657b83"
@@ -29,7 +29,7 @@ theme.S_cyan                        = "#2aa198"
 theme.S_green                       = "#859900"
 
 theme.font                          = "Tamsyn 9"
-theme.useless_gap_width             = 20
+theme.useless_gap_width             = 2
 
 theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.darkgray
