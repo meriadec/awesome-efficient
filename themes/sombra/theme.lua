@@ -34,7 +34,7 @@ theme.useless_gap_width             = 0
 theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.darkgray
 theme.fg_urgent                     = "#CC9393"
-theme.bg_normal                     = "#00000000"
+theme.bg_normal                     = "#2b303b"
 theme.bg_focus                      = theme.S_green
 theme.bg_urgent                     = "#1A1A1A"
 theme.border_width                  = 0
@@ -45,12 +45,11 @@ theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
 
 theme.taglist_fg_focus              = theme.S_base1
-theme.taglist_bg_focus              = "#0f0f0f99"
+theme.taglist_bg_focus              = "#4f5b66"
 theme.taglist_bg_normal             = theme.base01
 
-theme.tasklist_bg_focus             = "#0f0f0f99"
 theme.tasklist_fg_focus             = theme.S_base1
-theme.tasklist_fg_normal            = theme.S_base00
+theme.tasklist_bg_focus             = "#4f5b66"
 
 theme.textbox_widget_margin_top     = 0
 theme.notify_fg                     = theme.fg_normal
