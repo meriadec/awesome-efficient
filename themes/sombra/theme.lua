@@ -28,14 +28,16 @@ theme.S_blue                        = "#268bd2"
 theme.S_cyan                        = "#2aa198"
 theme.S_green                       = "#859900"
 
+theme.M_red = "#BF616A"
+
 theme.font                          = "Tamsyn 9"
 theme.useless_gap_width             = 0
 
 theme.fg_normal                     = theme.S_base01
-theme.fg_focus                      = theme.darkgray
+theme.fg_focus                      = theme.M_red
 theme.fg_urgent                     = "#CC9393"
 theme.bg_normal                     = "#2b303b"
-theme.bg_focus                      = theme.S_green
+theme.bg_focus                      = "#272b35"
 theme.bg_urgent                     = "#1A1A1A"
 theme.border_width                  = 0
 theme.border_normal                 = theme.S_base02
@@ -44,12 +46,12 @@ theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
 
-theme.taglist_fg_focus              = theme.S_base1
-theme.taglist_bg_focus              = "#4f5b66"
+theme.taglist_fg_focus              = theme.M_red
+--theme.taglist_bg_focus              = "#4f5b66"
 theme.taglist_bg_normal             = theme.base01
 
-theme.tasklist_fg_focus             = theme.S_base1
-theme.tasklist_bg_focus             = "#4f5b66"
+theme.tasklist_fg_focus             = theme.M_red
+--theme.tasklist_bg_focus             = "#4f5b66"
 
 theme.textbox_widget_margin_top     = 0
 theme.notify_fg                     = theme.fg_normal
