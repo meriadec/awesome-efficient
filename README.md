@@ -1,7 +1,7 @@
-awesome-solarized
-=================
+awesome-sombra
+==============
 
-Awesome 3.5 theme, based on [awesome-copycats powerarrow theme](https://github.com/copycat-killer/awesome-copycats) and [Solarized](http://ethanschoonover.com/solarized) color scheme.
+Awesome 3.5 theme, based on [awesome-copycats powerarrow theme](https://github.com/copycat-killer/awesome-copycats) and [base16-ocean](https://chriskempson.github.io/base16/) color scheme.
 
 ![screenshot](screenshot.png)
 
