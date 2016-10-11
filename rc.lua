@@ -43,7 +43,7 @@ editor     = os.getenv("EDITOR") or "vim" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
-browser    = "google-chrome-unstable"
+browser    = "google-chrome-stable"
 browser2   = "dwb"
 gui_editor = "vim"
 graphics   = "gimp"
