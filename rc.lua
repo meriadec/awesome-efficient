@@ -327,6 +327,13 @@ globalkeys = awful.util.table.join(
     -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
     awful.key({ altkey }, "p", function() os.execute("screenshot") end),
 
+    awful.key({ }, "XF86AudioRaiseVolume",
+      function () awful.util.spawn("amixer set Master 5%+", false) end),
+    awful.key({ }, "XF86AudioLowerVolume",
+      function () awful.util.spawn("amixer set Master 5%-", false) end),
+    awful.key({ }, "XF86AudioMute",
+      function () awful.util.spawn("amixer set Master toggle", false) end),
+
     -- Tag browsing
     awful.key({ modkey }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
