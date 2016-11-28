@@ -5,7 +5,7 @@
 theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/sombra"
-theme.wallpaper                     = themes_dir .. "/ocean.jpg"
+theme.wallpaper                     = themes_dir .. "/ocean-2.jpg"
 
 theme.darkgray                      = "#002b36"
 theme.gray                          = "#657b83"
@@ -37,11 +37,12 @@ theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.M_red
 theme.fg_urgent                     = "#CC9393"
 theme.bg_normal                     = "#2b303b"
-theme.bg_focus                      = "#272b35"
+--theme.bg_focus                      = "#272b35"
+theme.bg_focus                      = "#2b303b"
 theme.bg_urgent                     = "#1A1A1A"
 theme.border_width                  = 0
-theme.border_normal                 = theme.S_base02
-theme.border_focus                  = theme.S_green
+theme.border_normal                 = "#2b303b"
+theme.border_focus                  = theme.M_red
 theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
