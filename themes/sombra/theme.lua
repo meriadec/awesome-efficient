@@ -7,10 +7,11 @@ theme                               = {}
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/sombra"
 theme.wallpaper                     = themes_dir .. "/ocean-2.jpg"
 
-theme.darkgray                      = "#002b36"
 theme.gray                          = "#657b83"
 theme.base01                        = "#586e75"
+theme.transparent                   = "#00000000"
 
+theme.darker                        = "#232730"
 theme.S_base03                      = "#002b36"
 theme.S_base02                      = "#073642"
 theme.S_base01                      = "#586e75"
@@ -30,18 +31,18 @@ theme.S_green                       = "#859900"
 
 theme.M_red = "#BF616A"
 
-theme.font                          = "Tamsyn 9"
-theme.useless_gap_width             = 0
+theme.font                          = "Fira Code 7"
+theme.useless_gap_width             = 10
 
 theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.M_red
 theme.fg_urgent                     = "#CC9393"
-theme.bg_normal                     = "#2b303b"
+theme.bg_normal                     = "#00000022"
 --theme.bg_focus                      = "#272b35"
-theme.bg_focus                      = "#2b303b"
+theme.bg_focus                      = "#00000000"
 theme.bg_urgent                     = "#1A1A1A"
-theme.border_width                  = 0
-theme.border_normal                 = "#2b303b"
+theme.border_width                  = 1
+theme.border_normal                 = theme.darker
 theme.border_focus                  = theme.M_red
 theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
@@ -52,6 +53,7 @@ theme.taglist_fg_focus              = theme.M_red
 theme.taglist_bg_normal             = theme.base01
 
 theme.tasklist_fg_focus             = theme.M_red
+theme.tasklist_bg_normal            = theme.transparent
 --theme.tasklist_bg_focus             = "#4f5b66"
 
 theme.textbox_widget_margin_top     = 0
