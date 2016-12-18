@@ -390,27 +390,40 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Layout manipulation
+    --
     awful.key({ modkey, "Shift"   }, "t", function () awful.client.swap.byidx(  1)    end),
     awful.key({ modkey, "Shift"   }, "n", function () awful.client.swap.byidx( -1)    end),
-    awful.key({ modkey, "Control" }, "t", function () awful.screen.focus_relative( 1) end),
-    awful.key({ modkey, "Control" }, "n", function () awful.screen.focus_relative(-1) end),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end),
-    awful.key({ altkey, "Shift"   }, "l",      function () awful.tag.incmwfact( 0.05)     end),
-    awful.key({ altkey, "Shift"   }, "h",      function () awful.tag.incmwfact(-0.05)     end),
-    awful.key({ modkey, "Shift"   }, "l",      function () awful.tag.incnmaster(-1)       end),
-    awful.key({ modkey, "Shift"   }, "h",      function () awful.tag.incnmaster( 1)       end),
-    awful.key({ modkey, "Control" }, "l",      function () awful.tag.incncol(-1)          end),
-    awful.key({ modkey, "Control" }, "h",      function () awful.tag.incncol( 1)          end),
+
+    -- awful.key({ modkey, "Control" }, "t", function () awful.screen.focus_relative( 1) end),
+    -- awful.key({ modkey, "Control" }, "n", function () awful.screen.focus_relative(-1) end),
+
+    -- awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),
+
+    -- awful.key({ modkey,           }, "Tab",
+    --     function ()
+    --         awful.client.focus.history.previous()
+    --         if client.focus then
+    --             client.focus:raise()
+    --         end
+    --     end),
+
+    awful.key({ modkey,           }, "+",     function () awful.tag.incmwfact( 0.05)          end),
+    awful.key({ modkey,           }, "-",     function () awful.tag.incmwfact(-0.05)          end),
+    awful.key({ modkey, "Shift"   }, "+",     function () awful.tag.incnmaster( 1, nil, true) end),
+    awful.key({ modkey, "Shift"   }, "-",     function () awful.tag.incnmaster(-1, nil, true) end),
+    awful.key({ modkey, "Control" }, "+",     function () awful.tag.incncol( 1, nil, true)    end),
+    awful.key({ modkey, "Control" }, "-",     function () awful.tag.incncol(-1, nil, true)    end),
+
+    -- awful.key({ altkey, "Shift"   }, "l",      function () awful.tag.incmwfact( 0.05)     end),
+    -- awful.key({ altkey, "Shift"   }, "h",      function () awful.tag.incmwfact(-0.05)     end),
+    -- awful.key({ modkey, "Shift"   }, "l",      function () awful.tag.incnmaster(-1)       end),
+    -- awful.key({ modkey, "Shift"   }, "h",      function () awful.tag.incnmaster( 1)       end),
+    -- awful.key({ modkey, "Control" }, "l",      function () awful.tag.incncol(-1)          end),
+    -- awful.key({ modkey, "Control" }, "h",      function () awful.tag.incncol( 1)          end),
+
     awful.key({ modkey,           }, "space",  function () awful.layout.inc(layouts,  1)  end),
     awful.key({ modkey, "Shift"   }, "space",  function () awful.layout.inc(layouts, -1)  end),
-    awful.key({ modkey, "Control" }, "n",      awful.client.restore),
+    -- awful.key({ modkey, "Control" }, "n",      awful.client.restore),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
