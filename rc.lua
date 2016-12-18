@@ -115,8 +115,10 @@ require("freedesktop/freedesktop")
 markup = lain.util.markup
 
 -- Textclock
+color_grey = "#8fa1b3"
+
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-mytextclock = awful.widget.textclock(markup("#b58900", " %a %d %b | %H:%M"))
+mytextclock = awful.widget.textclock(markup(color_grey, " %a %d %b | %H:%M"))
 
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
@@ -125,7 +127,7 @@ lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_markup(markup("#000000aa", " mem ") .. mem_now.used .. "MB ")
+        widget:set_markup(markup("#dc322f77", " mem ") .. mem_now.used .. "MB ")
     end
 })
 
@@ -133,7 +135,7 @@ memwidget = lain.widgets.mem({
 cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 cpuwidget = lain.widgets.cpu({
     settings = function()
-        widget:set_markup(markup("#000000aa", " cpu ") .. cpu_now.usage .. "% ")
+        widget:set_markup(markup("#dc322f77", " cpu ") .. cpu_now.usage .. "% ")
     end
 })
 
@@ -141,7 +143,7 @@ cpuwidget = lain.widgets.cpu({
 tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 tempwidget = lain.widgets.temp({
     settings = function()
-        widget:set_markup(markup("#000000aa", " temp ") .. coretemp_now .. "°C ")
+        widget:set_markup(markup("#dc322f77", " temp ") .. coretemp_now .. "°C ")
     end
 })
 
@@ -149,7 +151,7 @@ tempwidget = lain.widgets.temp({
 fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
 fswidgetbg = lain.widgets.fs({
     settings  = function()
-        widget:set_markup(markup("#000000aa", " disk ") .. fs_now.used .. "% ")
+        widget:set_markup(markup("#dc322f77", " disk ") .. fs_now.used .. "% ")
     end
 })
 
@@ -186,7 +188,7 @@ volumewidget = lain.widgets.alsa({
             volicon:set_image(beautiful.widget_vol)
         end
 
-        widget:set_markup(markup("#000000aa", " vol ") .. volume_now.level .. "% ")
+        widget:set_markup(markup("#dc322f77", " vol ") .. volume_now.level .. "% ")
     end
 })
 
@@ -195,7 +197,7 @@ neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = lain.widgets.net({
     settings = function()
-        widget:set_markup(markup("#000000aa", " net ")
+        widget:set_markup(markup("#dc322f77", " net ")
                           .. markup("#7AC82E", net_now.received)
                           .. " " ..
                           markup("#46A8C3", " " .. net_now.sent .. " "))

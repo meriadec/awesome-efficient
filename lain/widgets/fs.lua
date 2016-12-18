@@ -27,7 +27,10 @@ local setmetatable = setmetatable
 local fs = {}
 
 local notification  = nil
-fs_notification_preset = { fg = beautiful.fg_normal }
+fs_notification_preset = {
+  fg = "#073642",
+  bg = "#BF616A99"
+}
 
 function fs:hide()
     if notification ~= nil then

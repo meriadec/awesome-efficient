@@ -5,7 +5,7 @@
 theme                               = {}
 
 themes_dir                          = os.getenv("HOME") .. "/.config/awesome/themes/sombra"
-theme.wallpaper                     = themes_dir .. "/ocean-3.jpg"
+theme.wallpaper                     = themes_dir .. "/pattern.png"
 
 theme.gray                          = "#657b83"
 theme.base01                        = "#586e75"
@@ -30,6 +30,9 @@ theme.S_cyan                        = "#2aa198"
 theme.S_green                       = "#859900"
 
 theme.M_red = "#BF616A"
+theme.M_grey = "#8fa1b3"
+theme.M_redTransparent = "#BF616A55"
+theme.M_redTransparenter = "#BF616A11"
 
 theme.font                          = "Fira Code 7"
 theme.useless_gap_width             = 0
@@ -48,14 +51,15 @@ theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
 
-theme.taglist_fg_focus              = theme.darker
-theme.taglist_bg_focus              = theme.M_red
---theme.taglist_bg_focus              = "#4f5b66"
 theme.taglist_bg_normal             = theme.base01
+theme.taglist_fg_focus              = theme.darker
+theme.taglist_bg_focus              = theme.M_redTransparent
+--theme.taglist_bg_focus              = "#4f5b66"
 
-theme.tasklist_fg_focus             = theme.M_red
 theme.tasklist_bg_normal            = theme.transparent
---theme.tasklist_bg_focus             = "#4f5b66"
+theme.tasklist_fg_focus             = theme.M_red
+theme.tasklist_fg_normal            = theme.S_base01
+theme.tasklist_bg_focus             = theme.M_redTransparenter
 
 theme.textbox_widget_margin_top     = 0
 theme.notify_fg                     = theme.fg_normal

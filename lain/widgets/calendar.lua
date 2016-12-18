@@ -1,9 +1,9 @@
 
 --[[
-                                                  
-     Licensed under GNU General Public License v2 
-      * (c) 2013, Luke Bonham                     
-                                                  
+
+     Licensed under GNU General Public License v2
+      * (c) 2013, Luke Bonham
+
 --]]
 
 local icons_dir    = require("lain.helpers").icons_dir
@@ -94,7 +94,7 @@ function calendar:show(t_out, inc_offset)
 
     cal_notification = naughty.notify({
         text = c_text,
-        icon = calendar.notify_icon,
+        --icon = calendar.notify_icon,
         position = calendar.position,
         fg = calendar.fg,
         bg = calendar.bg,
@@ -107,11 +107,12 @@ function calendar:attach(widget, args)
     local args = args or {}
     calendar.cal       = args.cal or "/usr/bin/cal"
     calendar.icons     = args.icons or icons_dir .. "cal/white/"
-    calendar.font      = args.font or beautiful.font:sub(beautiful.font:find(""),
-                         beautiful.font:find(" "))
-    calendar.font_size = tonumber(args.font_size) or 11
-    calendar.fg        = args.fg or beautiful.fg_normal or "#FFFFFF"
-    calendar.bg        = args.bg or beautiful.bg_normal or "#FFFFFF"
+    -- calendar.font      = args.font or beautiful.font:sub(beautiful.font:find(""),
+    --                      beautiful.font:find(" "))
+    calendar.font = 'Fira Code'
+    calendar.font_size = 8
+    calendar.fg        = "#073642"
+    calendar.bg        = "#BF616A99"
     calendar.position  = args.position or "top_right"
 
     calendar.offset = 0
