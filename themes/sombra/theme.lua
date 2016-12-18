@@ -32,7 +32,7 @@ theme.S_green                       = "#859900"
 theme.M_red = "#BF616A"
 
 theme.font                          = "Fira Code 7"
-theme.useless_gap_width             = 10
+theme.useless_gap_width             = 0
 
 theme.fg_normal                     = theme.S_base01
 theme.fg_focus                      = theme.M_red
@@ -41,14 +41,15 @@ theme.bg_normal                     = "#00000022"
 --theme.bg_focus                      = "#272b35"
 theme.bg_focus                      = "#00000000"
 theme.bg_urgent                     = "#1A1A1A"
-theme.border_width                  = 1
+theme.border_width                  = 0
 theme.border_normal                 = "#2b303b"
 theme.border_focus                  = theme.M_red
 theme.border_marked                 = "#CC9393"
 theme.titlebar_bg_focus             = "#FFFFFF"
 theme.titlebar_bg_normal            = "#FFFFFF"
 
-theme.taglist_fg_focus              = theme.M_red
+theme.taglist_fg_focus              = theme.darker
+theme.taglist_bg_focus              = theme.M_red
 --theme.taglist_bg_focus              = "#4f5b66"
 theme.taglist_bg_normal             = theme.base01
 
