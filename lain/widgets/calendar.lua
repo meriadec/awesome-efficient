@@ -98,6 +98,7 @@ function calendar:show(t_out, inc_offset)
         position = calendar.position,
         fg = calendar.fg,
         bg = calendar.bg,
+        border_width = 0,
         timeout = tims,
         screen = client.focus and client.focus.screen or 1
     })

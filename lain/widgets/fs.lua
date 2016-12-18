@@ -29,7 +29,8 @@ local fs = {}
 local notification  = nil
 fs_notification_preset = {
   fg = "#073642",
-  bg = "#BF616A99"
+  bg = "#BF616A99",
+  border_width = 0
 }
 
 function fs:hide()
