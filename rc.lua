@@ -127,7 +127,7 @@ lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_markup(markup("#dc322f77", " mem ") .. mem_now.used .. "MB ")
+        widget:set_markup(markup("#dc322f77", " mem ") .. markup(color_grey, mem_now.used) .. "MB ")
     end
 })
 
@@ -135,7 +135,7 @@ memwidget = lain.widgets.mem({
 cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 cpuwidget = lain.widgets.cpu({
     settings = function()
-        widget:set_markup(markup("#dc322f77", " cpu ") .. cpu_now.usage .. "% ")
+        widget:set_markup(markup("#dc322f77", " cpu ") .. markup(color_grey, cpu_now.usage) .. "% ")
     end
 })
 
@@ -143,7 +143,7 @@ cpuwidget = lain.widgets.cpu({
 tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 tempwidget = lain.widgets.temp({
     settings = function()
-        widget:set_markup(markup("#dc322f77", " temp ") .. coretemp_now .. "°C ")
+        widget:set_markup(markup("#dc322f77", " temp ") .. markup(color_grey, coretemp_now) .. "°C ")
     end
 })
 
@@ -151,7 +151,7 @@ tempwidget = lain.widgets.temp({
 fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
 fswidgetbg = lain.widgets.fs({
     settings  = function()
-        widget:set_markup(markup("#dc322f77", " disk ") .. fs_now.used .. "% ")
+        widget:set_markup(markup("#dc322f77", " disk ") .. markup(color_grey, fs_now.used) .. "% ")
     end
 })
 
@@ -188,7 +188,7 @@ volumewidget = lain.widgets.alsa({
             volicon:set_image(beautiful.widget_vol)
         end
 
-        widget:set_markup(markup("#dc322f77", " vol ") .. volume_now.level .. "% ")
+        widget:set_markup(markup("#dc322f77", " vol ") .. markup(color_grey, volume_now.level) .. "% ")
     end
 })
 
