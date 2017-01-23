@@ -54,7 +54,8 @@ musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 local layouts = {
   lain.layout.uselessfair,
   lain.layout.uselesstile,
-  lain.layout.uselessfair.horizontal
+  lain.layout.uselessfair.horizontal,
+  awful.layout.suit.floating
 }
 -- }}}
 
