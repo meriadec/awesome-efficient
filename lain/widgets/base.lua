@@ -7,9 +7,8 @@
 --]]
 
 local newtimer     = require("lain.helpers").newtimer
+local read_pipe    = require("lain.helpers").read_pipe
 local wibox        = require("wibox")
-
-local io           = { popen = io.popen }
 local setmetatable = setmetatable
 
 -- Basic template for custom widgets
@@ -22,14 +21,15 @@ local function worker(args)
     local cmd      = args.cmd or ""
     local settings = args.settings or function() end
 
-    base.widget = wibox.widget.textbox('')
+    base.widget = wibox.widget.textbox()
 
     function base.update()
-        local f = assert(io.popen(cmd))
-        output = f:read("*a")
-        f:close()
-        widget = base.widget
-        settings()
+        output = read_pipe(cmd)
+        if output ~= base.prev then
+            widget = base.widget
+            settings()
+            base.prev = output
+        end
     end
 
     newtimer(cmd, timeout, base.update)

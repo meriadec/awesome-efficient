@@ -1,19 +1,16 @@
 
 --[[
-                                                  
-     Licensed under GNU General Public License v2 
-      * (c) 2014, Luke Bonham                     
-                                                  
+
+     Licensed under GNU General Public License v2
+      * (c) 2014, Luke Bonham
+
 --]]
 
-local newtimer     = require("lain.helpers").newtimer
-local async        = require("lain.asyncshell")
+local helpers      = require("lain.helpers")
 local wibox        = require("wibox")
-
 local setmetatable = setmetatable
 
--- Basic template for custom widgets 
--- Asynchronous version
+-- Basic template for custom widgets (asynchronous version)
 -- lain.widgets.abase
 
 local function worker(args)
@@ -23,18 +20,20 @@ local function worker(args)
     local cmd      = args.cmd or ""
     local settings = args.settings or function() end
 
-    abase.widget = wibox.widget.textbox('')
+    abase.widget = wibox.widget.textbox()
 
     function abase.update()
-        async.request(cmd, function(f)
-            output = f:read("*a")
-            f:close()
-            widget = abase.widget
-            settings()
+        helpers.async(cmd, function(f)
+            output = f
+            if output ~= abase.prev then
+                widget = abase.widget
+                settings()
+                abase.prev = output
+            end
         end)
     end
 
-    newtimer(cmd, timeout, abase.update)
+    helpers.newtimer(cmd, timeout, abase.update)
 
     return setmetatable(abase, { __index = abase.widget })
 end

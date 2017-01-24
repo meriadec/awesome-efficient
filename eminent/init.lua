@@ -10,11 +10,9 @@
 
 -- Grab environment
 local ipairs = ipairs
-local awful = require("awful")
-local table = table
-local capi = {
-    screen = screen,
-}
+local awful  = require("awful")
+local table  = table
+local capi   = { screen = screen }
 
 -- Eminent: Effortless wmii-style dynamic tagging
 module("eminent")
@@ -22,15 +20,14 @@ module("eminent")
 -- Grab the original functions we're replacing
 local deflayout = nil
 local orig = {
-    new = awful.tag.new,
+    new     = awful.tag.new,
     taglist = awful.widget.taglist.new,
-    filter = awful.widget.taglist.filter.all,
+    filter  = awful.widget.taglist.filter.all,
 }
 
 -- Return tags with stuff on them, mark others hidden
 function gettags(screen)
     local tags = {}
-
     for k, t in ipairs(capi.screen[screen]:tags()) do
         if t.selected or #t:clients() > 0 then
             awful.tag.setproperty(t, "hide", false)
