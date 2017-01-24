@@ -5,3 +5,8 @@
   Based on the "powerarrow" theme from copycat-killer
 
   No screenshot. Do it yourself.
+
+
+
+  installation:
+  git clone https://github.com/meriadec/awesome-sombra ~/.config/awesome
