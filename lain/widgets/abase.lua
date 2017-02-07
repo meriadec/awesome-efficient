@@ -18,6 +18,7 @@ local function worker(args)
     local args     = args or {}
     local timeout  = args.timeout or 5
     local cmd      = args.cmd or ""
+    local trim     = args.trim or false
     local settings = args.settings or function() end
 
     abase.widget = wibox.widget.textbox()
@@ -25,6 +26,9 @@ local function worker(args)
     function abase.update()
         helpers.async(cmd, function(f)
             output = f
+            if trim then
+              output = string.gsub(output, "\n", "")
+            end
             if output ~= abase.prev then
                 widget = abase.widget
                 settings()

@@ -150,6 +150,7 @@ local separators = lain.util.separators
 local mytextclock = lain.widgets.abase({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
+    trim     = true,
     settings = function()
         widget:set_markup(" " .. output)
     end
