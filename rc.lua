@@ -147,12 +147,23 @@ local mymainmenu = freedesktop.menu.build({
 local markup = lain.util.markup
 local separators = lain.util.separators
 
+local function infoText(widget, value, unit, label)
+  widget:set_markup(
+    " "
+    .. label
+    .. " "
+    .. markup("#BF616Aaa", "<b>" .. value .. "</b>")
+    .. markup("#BF616A99", unit)
+    .. " "
+  )
+end
+
 local mytextclock = lain.widgets.abase({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
     trim     = true,
     settings = function()
-        widget:set_markup(" " .. output)
+        widget:set_markup(markup("#65737e", " <b>" .. output .. "</b>"))
     end
 })
 
@@ -169,7 +180,7 @@ lain.widgets.calendar.attach(mytextclock, {
 local memicon = wibox.widget.imagebox(beautiful.widget_mem)
 local memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_text(" " .. mem_now.used .. "MB ")
+      infoText(widget, mem_now.used, "MB", "mem")
     end
 })
 
@@ -177,7 +188,7 @@ local memwidget = lain.widgets.mem({
 local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 local cpuwidget = lain.widgets.cpu({
     settings = function()
-        widget:set_text(" " .. cpu_now.usage .. "% ")
+        infoText(widget, cpu_now.usage, "%", "cpu")
     end
 })
 
@@ -185,7 +196,7 @@ local cpuwidget = lain.widgets.cpu({
 local tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 local tempwidget = lain.widgets.temp({
     settings = function()
-        widget:set_text(" " .. coretemp_now .. "°C ")
+        infoText(widget, coretemp_now, "°C", "temp")
     end
 })
 
@@ -207,7 +218,7 @@ local volume = lain.widgets.alsa({
             volicon:set_image(beautiful.widget_vol)
         end
 
-        widget:set_text(" " .. volume_now.level .. "% ")
+        infoText(widget, volume_now.level, "%", "vol")
     end
 })
 
