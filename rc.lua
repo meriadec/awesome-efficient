@@ -189,38 +189,9 @@ local tempwidget = lain.widgets.temp({
     end
 })
 
--- / fs
-local fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
-local fsroot = lain.widgets.fs({
-    options  = "--exclude-type=tmpfs",
-    notification_preset = { fg = beautiful.fg_widget, bg = beautiful.bg_widget, font = beautiful.font },
-    settings = function()
-        widget:set_text(" " .. fs_now.used .. "% ")
-    end
-})
-
--- Battery
-local baticon = wibox.widget.imagebox(beautiful.widget_battery)
-local batwidget = lain.widgets.bat({
-    settings = function()
-        if bat_now.status ~= "N/A" then
-            if bat_now.ac_status == 1 then
-                widget:set_markup(" AC ")
-                baticon:set_image(beautiful.widget_ac)
-                return
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                baticon:set_image(beautiful.widget_battery_empty)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                baticon:set_image(beautiful.widget_battery_low)
-            else
-                baticon:set_image(beautiful.widget_battery)
-            end
-            widget:set_markup(" " .. bat_now.perc .. "% ")
-        else
-            baticon:set_image(beautiful.widget_ac)
-        end
-    end
-})
+-- Systray
+local systray = wibox.widget.systray()
+systray.set_base_size(20)
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(beautiful.widget_vol)
@@ -347,17 +318,15 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
-            spr,
-            spr,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            wibox.layout.margin(systray, 5, 5, 5, 0),
             volume,
             memwidget,
             cpuwidget,
             tempwidget,
-            fsroot,
             netwidget,
             mytextclock,
             spr,
