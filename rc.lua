@@ -323,8 +323,6 @@ awful.screen.connect_for_each_screen(function(s)
     -- Tags
     awful.tag(tagnames, s, initialLayouts)
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -349,7 +347,6 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             s.mytaglist,
             spr,
-            s.mypromptbox,
             spr,
         },
         s.mytasklist, -- Middle widget
@@ -495,8 +492,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "c", function () awful.spawn(browser) end),
 
     -- Prompt
-    awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
-              {description = "run prompt", group = "launcher"})
+    awful.key({ modkey }, "r", function () awful.util.spawn("rofi -show run", false) end,
+              {description = "run rofi prompt box", group = "launcher"})
 
 )
 
