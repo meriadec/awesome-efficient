@@ -82,7 +82,7 @@ end
 
 function calendar.attach(widget, args)
     local args                   = args or {}
-    calendar.cal                 = args.cal or "/usr/bin/cal --color=always"
+    calendar.cal                 = args.cal or "/usr/bin/cal --color=never"
     calendar.followtag           = args.followtag or false
     calendar.icons               = args.icons or icons_dir .. "cal/white/"
     calendar.notification_preset = args.notification_preset
