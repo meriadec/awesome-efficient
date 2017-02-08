@@ -7,19 +7,17 @@
                                                   
 --]]
 
-local helpers      = require("lain.helpers")
-local naughty      = require("naughty")
-local wibox        = require("wibox")
-local shell        = require("awful.util").shell
-local string       = { format = string.format,
-                       match  = string.match }
-local setmetatable = setmetatable
+local helpers = require("lain.helpers")
+local naughty = require("naughty")
+local wibox   = require("wibox")
+local string  = { format = string.format,
+                  match  = string.match }
 
 -- Network infos
--- lain.widgets.net
+-- lain.widget.net
 
-local function worker(args)
-    local net = helpers.make_widget_textbox()
+local function factory(args)
+    local net = { widget = wibox.widget.textbox() }
     net.last_t = 0
     net.last_r = 0
     net.devices = {}
@@ -32,11 +30,12 @@ local function worker(args)
     local settings   = args.settings or function() end
 
     -- Compatibility with old API where iface was a string corresponding to 1 interface
-    net.iface = (args.iface and type(args.iface) == "string" and {args.iface}) or {}
+    net.iface = (args.iface and (type(args.iface) == "string" and {args.iface}) or
+                (type(args.iface) == "table" and args.iface)) or {}
 
     function net.get_device()
-        helpers.async(string.format("%s -c 'ip link show'", shell, device_cmd), function(ws)
-            ws = ws:match("(%w+): <BROADCAST,MULTICAST,.-,UP,LOWER_UP>")
+        helpers.async(string.format("ip link show", device_cmd), function(ws)
+            ws = ws:match("(%w+): <BROADCAST,MULTICAST,.-UP,LOWER_UP>")
             net.iface = ws and { ws } or {}
         end)
     end
@@ -97,12 +96,10 @@ local function worker(args)
                 helpers.set_map(dev, true)
             end
 
-            -- Old api compatibility
             net_now.carrier      = dev_now.carrier
             net_now.state        = dev_now.state
-            -- And new api
             net_now.devices[dev] = dev_now
-            -- With the new api new_now.sent and net_now.received will be the
+            -- new_now.sent and net_now.received will be the
             -- totals across all specified devices
         end
 
@@ -117,9 +114,9 @@ local function worker(args)
         settings()
     end
 
-    helpers.newtimer(net.iface, timeout, update)
+    helpers.newtimer("network", timeout, update)
 
     return net
 end
 
-return setmetatable({}, { __call = function(_, ...) return worker(...) end })
+return factory
