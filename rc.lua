@@ -163,7 +163,19 @@ local mytextclock = lain.widgets.abase({
     cmd      = " date +'%a %d %b %R'",
     trim     = true,
     settings = function()
-        widget:set_markup(markup("#65737e", " <b>" .. output .. "</b>"))
+        words = {}
+        for word in output:gmatch("%w+") do table.insert(words, word) end
+        widget:set_markup(markup("#65737e",
+          " <b>"
+          .. words[1]
+          .. " "
+          .. words[2]
+          .. " "
+          .. words[3]
+          .. " "
+          .. markup("#ddd", words[4] .. ":" .. words[5])
+          .. "</b>"
+        ))
     end
 })
 
