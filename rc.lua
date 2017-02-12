@@ -345,7 +345,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.layout.margin(systray, 5, 5, 5, 0),
+            wibox.layout.margin(systray, 5, 0, 5, 0),
             volume,
             memwidget,
             cpuwidget,
