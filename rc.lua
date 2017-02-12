@@ -484,6 +484,10 @@ globalkeys = awful.util.table.join(
     -- User programs
     awful.key({ modkey }, "c", function () awful.spawn(browser) end),
 
+    -- Lock screen
+    awful.key({ modkey }, "l", function () awful.util.spawn("slock", false) end,
+              {description = "lock the screen", group = "launcher"}),
+
     -- Prompt
     awful.key({ modkey }, "r", function () awful.util.spawn("rofi -show run", false) end,
               {description = "run rofi prompt box", group = "launcher"})
