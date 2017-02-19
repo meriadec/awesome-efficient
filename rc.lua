@@ -353,7 +353,7 @@ awful.screen.connect_for_each_screen(function(s)
             netwidget,
             mytextclock,
             --                                 L  R  T  B
-            wibox.layout.margin(s.mylayoutbox, 5, 2, 2, 4),
+            wibox.layout.margin(s.mylayoutbox, 5, 2, 1, 2),
         },
     }
 end)
