@@ -125,21 +125,17 @@ end
 -- }}}
 
 -- {{{ Menu
-local myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
+myawesomemenu = {
+   { "hotkeys", function() return false, hotkeys_popup.show_help end},
+   { "restart", awesome.restart },
+   { "quit", function() awesome.quit() end}
 }
-local mymainmenu = freedesktop.menu.build({
-    before = {
-        { "Awesome", myawesomemenu, beautiful.awesome_icon },
-        -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal },
-        -- other triads can be put here
-    }
-})
+
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+                                    { "open terminal", terminal }
+                                  }
+                        })
+
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
