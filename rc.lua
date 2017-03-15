@@ -126,15 +126,16 @@ end
 
 -- {{{ Menu
 myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
+  { "hotkeys", function() return false, hotkeys_popup.show_help end},
+  { "restart", awesome.restart },
+  { "quit", function() awesome.quit() end}
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
-                                  }
-                        })
+mymainmenu = awful.menu({
+  items = {
+    { "awesome", myawesomemenu, beautiful.awesome_icon }
+  }
+})
 
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
