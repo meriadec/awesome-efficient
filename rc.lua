@@ -494,6 +494,13 @@ clientkeys = awful.util.table.join(
     { description = "toggle fullscreen", group = "client" }
   ),
 
+  awful.key({ modkey }, "w",
+    function (c)
+      c.focusable = false
+    end,
+    { description = "make client unfocusable", group = "client" }
+  ),
+
   awful.key({ modkey, "Shift" }, "c",
     function (c)
       c:kill()
