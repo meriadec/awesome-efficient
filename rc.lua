@@ -498,7 +498,7 @@ clientkeys = awful.util.table.join(
     function (c)
       c:kill()
     end,
-    {description = "close", group = "client"}
+    { description = "close", group = "client" }
   ),
 
   awful.key({ modkey, "Control" }, "space",
