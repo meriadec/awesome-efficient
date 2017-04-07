@@ -64,7 +64,7 @@ local terminal   = "urxvtc"
 local editor     = "nvim"
 
 -- user defined
-local browser    = "google-chrome"
+local browser    = os.getenv("BROWSER")
 local tagnames   = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 " }
 
 -- table of layouts to cover with awful.layout.inc, order matters.
