@@ -149,7 +149,8 @@ local function infoText(widget, value, unit, label)
     " "
     .. label
     .. " "
-    .. markup("#BF616Aaa", "<b>" .. value .. "</b>")
+    .. markup("#BF616Aaa", "" .. value .. "")
+    -- .. markup("#BF616Aaa", "<b>" .. value .. "</b>")
     .. markup("#BF616A99", unit)
     .. " "
   )
@@ -163,7 +164,7 @@ local mytextclock = lain.widgets.abase({
         words = {}
         for word in output:gmatch("%w+") do table.insert(words, word) end
         widget:set_markup(markup("#65737e",
-          " <b>"
+          " "
           .. words[1]
           .. " "
           .. words[2]
@@ -171,7 +172,7 @@ local mytextclock = lain.widgets.abase({
           .. words[3]
           .. " "
           .. markup("#ddd", words[4] .. ":" .. words[5])
-          .. "</b>"
+          .. ""
         ))
     end
 })
