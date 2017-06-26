@@ -418,6 +418,10 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "Left",  function () awful.client.moveresize(-1,   0,   0,   0) end),
    awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 1,   0,   0,   0) end),
 
+    -- On the fly useless gaps change
+    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end),
+    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end),
+
     awful.key({ altkey,           }, "Tab",
         function ()
             awful.client.focus.history.previous()
