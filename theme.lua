@@ -1,7 +1,7 @@
 local theme                                     = {}
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome"
-theme.wallpaper                                 = theme.dir .. "/wallpaper.png"
+theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
 
 theme.font                                      = "Misc Tamsyn 8"
 theme.fg_normal                                 = "#586e75"
