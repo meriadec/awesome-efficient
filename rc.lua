@@ -50,7 +50,6 @@ local function run_once(cmd)
 end
 
 run_once("termite")
-run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
@@ -331,7 +330,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 30, visible = false })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 60, visible = false })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
