@@ -74,7 +74,7 @@ local initialLayouts = {
   awful.layout.suit.tile,
   awful.layout.suit.tile,
   awful.layout.suit.tile,
-  awful.layout.suit.floating,
+  awful.layout.suit.tile,
 }
 
 awful.layout.layouts = {
