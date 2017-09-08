@@ -251,7 +251,6 @@ root.buttons(awful.util.table.join(
 ))
 
 globalkeys = awful.util.table.join(
-
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 5%+", false) end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 5%-", false) end),
 
@@ -298,8 +297,8 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Control" }, "Right", function () awful.client.moveresize( 1,   0,   0,   0) end),
 
     -- On the fly useless gaps change
-    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end),
-    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end),
+    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(10) end),
+    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-10) end),
 
     awful.key({ altkey }, "Tab", function ()
       awful.client.focus.history.previous()
@@ -337,149 +336,118 @@ globalkeys = awful.util.table.join(
       volume.update()
     end),
 
-    -- User programs
     awful.key({ modkey }, "c", function () awful.spawn(browser) end),
-
-    -- Lock screen
     awful.key({ modkey }, "l", function () awful.util.spawn("slock", false) end),
-
-    -- Prompt
     awful.key({ modkey }, "r", function () awful.util.spawn("rofi -show run", false) end)
-
 )
 
 clientkeys = awful.util.table.join(
-
   awful.key({ modkey }, "f", function (c)
     c.fullscreen = not c.fullscreen
     c:raise()
   end),
 
   awful.key({ modkey }, "w", function (c) c.focusable = false end),
-
-  awful.key({ modkey, "Shift" }, "c", function (c)
-    c:kill()
-  end),
-
+  awful.key({ modkey, "Shift" }, "c", function (c) c:kill() end),
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle),
   awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),
-
   awful.key({ modkey }, "p", function (c) c.ontop = not c.ontop end)
-
 )
 
--- Bind all key numbers to tags.
--- Be careful: we use keycodes to make it works on any keyboard layout.
--- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
-    globalkeys = awful.util.table.join(globalkeys,
-        -- View tag only.
-        awful.key({ modkey }, "#" .. i + 9,
-                  function ()
-                        local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
-                        if tag then
-                           tag:view_only()
-                        end
-                  end,
-                  {description = "view tag #"..i, group = "tag"}),
-        -- Move client to tag.
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:move_to_tag(tag)
-                          end
-                     end
-                  end,
-                  {description = "move focused client to tag #"..i, group = "tag"}),
-        -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
-                  function ()
-                      if client.focus then
-                          local tag = client.focus.screen.tags[i]
-                          if tag then
-                              client.focus:toggle_tag(tag)
-                          end
-                      end
-                  end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
-    )
+  globalkeys = awful.util.table.join(globalkeys,
+    -- go to tag
+    awful.key({ modkey }, "#" .. i + 9, function ()
+      local screen = awful.screen.focused()
+      local tag = screen.tags[i]
+      if tag then
+        tag:view_only()
+      end
+    end),
+
+    -- move client to tag
+    awful.key({ modkey, "Shift" }, "#" .. i + 9, function ()
+      if client.focus then
+        local tag = client.focus.screen.tags[i]
+        if tag then
+          client.focus:move_to_tag(tag)
+        end
+      end
+    end),
+
+    -- toggle tag on focused client.
+    awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function ()
+      if client.focus then
+        local tag = client.focus.screen.tags[i]
+        if tag then
+          client.focus:toggle_tag(tag)
+        end
+      end
+    end)
+  )
 end
 
 clientbuttons = awful.util.table.join(
-    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
-    awful.button({ modkey }, 1, awful.mouse.client.move),
-    awful.button({ modkey }, 3, awful.mouse.client.resize))
+  awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+  awful.button({ modkey }, 1, awful.mouse.client.move),
+  awful.button({ modkey }, 3, awful.mouse.client.resize)
+)
 
--- Set keys
 root.keys(globalkeys)
--- }}}
 
--- {{{ Rules
--- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
-    -- All clients will match this rule.
-    { rule = { },
-      properties = { border_width = beautiful.border_width,
-                     border_color = beautiful.border_normal,
-                     focus = awful.client.focus.filter,
-                     maximized_horizontal = false,
-                     maximized_vertical = false,
-                     maximized = false,
-                     raise = true,
-                     keys = clientkeys,
-                     buttons = clientbuttons,
-                     screen = awful.screen.preferred,
-                     placement = awful.placement.no_overlap+awful.placement.no_offscreen,
-                     size_hints_honor = false
-     }
-    },
-
-    -- Titlebars
-    { rule_any = { type = { "dialog", "normal" } },
-      properties = { titlebars_enabled = true } },
-
+  -- all clients
+  {
+    rule = { },
+    properties = {
+      border_width = beautiful.border_width,
+      border_color = beautiful.border_normal,
+      focus = awful.client.focus.filter,
+      maximized_horizontal = false,
+      maximized_vertical = false,
+      maximized = false,
+      raise = true,
+      keys = clientkeys,
+      buttons = clientbuttons,
+      screen = awful.screen.preferred,
+      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
+      size_hints_honor = false,
+    }
+  },
+  -- titlebars
+  {
+    rule_any = { type = { "dialog", "normal" }
+  },
+  properties = { titlebars_enabled = true } },
 }
--- }}}
 
--- {{{ Signals
--- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)
-    -- Set the windows at the slave,
-    -- i.e. put it at the end of others instead of setting it master.
-    -- if not awesome.startup then awful.client.setslave(c) end
-
-    if awesome.startup and
-      not c.size_hints.user_position
-      and not c.size_hints.program_position then
-        -- Prevent clients from being unreachable after screen count changes.
-        awful.placement.no_offscreen(c)
-    end
+  if awesome.startup and
+    not c.size_hints.user_position
+    and not c.size_hints.program_position then
+    -- Prevent clients from being unreachable after screen count changes.
+    awful.placement.no_offscreen(c)
+  end
 end)
 
 local setSmartBorders = function(c, firstRender)
 
-  local b_weight = 6
-  local b_string_weight = 2
-  local b_gutter = 12
   local b_string_color = gears.color("#ffffff77")
   local b_arrow_color = gears.color("#ffffffcc")
-  -- local b_color = gears.color("#2b303b77")
-  local b_arrow = 60
+  local b_weight = 12
+  local b_string_weight = 4
+  local b_gutter = 12
+  local b_arrow = 120
 
   local side = b_weight + b_gutter
-
   local total_width = c.width
-
-  if firstRender then
-    total_width = total_width + 2 * (b_weight + b_gutter)
-  end
-
   local total_height = c.height
 
-  if not firstRender then
+  -- for some reasons, the client height/width are not the same at first
+  -- render (when called by request title bar) and when resizing
+  if firstRender then
+    total_width = total_width + 2 * (b_weight + b_gutter)
+  else
     total_height = total_height - 2 * (b_weight + b_gutter)
   end
 
@@ -572,7 +540,6 @@ end
 client.connect_signal("request::titlebars", function(c) setSmartBorders(c, true) end)
 client.connect_signal("property::size", setSmartBorders)
 
--- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
   if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
     and awful.client.focus.filter(c) then
@@ -580,16 +547,17 @@ client.connect_signal("mouse::enter", function(c)
   end
 end)
 
--- No border for maximized clients
-client.connect_signal("focus",
-    function(c)
-        if c.maximized_horizontal == true and c.maximized_vertical == true then
-            c.border_width = 0
-        -- no borders if only 1 client visible
-        elseif #awful.client.visible(mouse.screen) > 1 then
-            c.border_width = beautiful.border_width
-            c.border_color = beautiful.border_focus
-        end
-    end)
+client.connect_signal("focus", function(c)
+  -- no border for maximized clients
+  if c.maximized_horizontal == true and c.maximized_vertical == true then
+    c.border_width = 0
+  -- no borders if only 1 client visible
+  elseif #awful.client.visible(mouse.screen) > 1 then
+    c.border_width = beautiful.border_width
+    c.border_color = beautiful.border_focus
+  else
+    c.border_width = 0
+  end
+end)
+
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
--- }}}
