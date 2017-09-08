@@ -8,6 +8,9 @@ local freedesktop   = require("freedesktop")
 local awful         = require("awful")
                       require("awful.autofocus")
 
+local topBarHeight = 35
+if os.getenv("HIDPI") == "1" then topBarHeight = 60 end
+
 if awesome.startup_errors then
   naughty.notify({
     preset = naughty.config.presets.critical,
@@ -217,7 +220,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 35, visible = false })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = topBarHeight, visible = false })
 
     s.mywibox:setup {
       layout = wibox.layout.align.horizontal,
