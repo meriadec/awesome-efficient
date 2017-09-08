@@ -432,7 +432,7 @@ end)
 
 local setSmartBorders = function(c, firstRender)
 
-  local b_string_color = gears.color("#ffffff77")
+  local b_string_color = gears.color("#ffffff33")
   local b_arrow_color = gears.color("#ffffffcc")
   local b_weight = 12
   local b_string_weight = 4
