@@ -41,6 +41,7 @@ local function runOnce(cmd)
 end
 
 runOnce("termite")
+runOnce("urxvt -e cava")
 
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
@@ -419,9 +420,25 @@ awful.rules.rules = {
   },
   -- titlebars
   {
-    rule_any = { type = { "dialog", "normal" }
+    rule_any = {
+      type = { "dialog", "normal" }
+    },
+    properties = { titlebars_enabled = true }
   },
-  properties = { titlebars_enabled = true } },
+  -- floating
+  {
+    rule = { instance = "urxvt" },
+    properties = {
+      floating = true,
+      buttons = nil,
+      keys = nil,
+      focusable = false,
+      geometry = { height = 300, width = 3840, y = 2160 - 300 + 15 },
+      sticky = true,
+      below = true,
+      titlebars_enabled = false,
+    },
+  },
 }
 
 client.connect_signal("manage", function (c)
@@ -434,6 +451,10 @@ client.connect_signal("manage", function (c)
 end)
 
 local setSmartBorders = function(c, firstRender)
+
+  if c.floating then
+    return
+  end
 
   local b_string_color = gears.color("#ffffff33")
   local b_arrow_color = gears.color("#ffffffcc")
