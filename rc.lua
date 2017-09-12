@@ -206,46 +206,50 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
-    s.quake = lain.util.quake({ app = terminal })
-    set_wallpaper(s)
-    awful.tag(tagnames, s, initialLayouts)
+  set_wallpaper(s)
+  awful.tag(tagnames, s, initialLayouts)
 
-    s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(awful.util.table.join(
-      awful.button({ }, 1, function () awful.layout.inc( 1) end),
-      awful.button({ }, 3, function () awful.layout.inc(-1) end),
-      awful.button({ }, 4, function () awful.layout.inc( 1) end),
-      awful.button({ }, 5, function () awful.layout.inc(-1) end)
-    ))
+  s.mylayoutbox = awful.widget.layoutbox(s)
+  s.mylayoutbox:buttons(awful.util.table.join(
+    awful.button({ }, 1, function () awful.layout.inc( 1) end),
+    awful.button({ }, 3, function () awful.layout.inc(-1) end),
+    awful.button({ }, 4, function () awful.layout.inc( 1) end),
+    awful.button({ }, 5, function () awful.layout.inc(-1) end)
+  ))
 
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+  s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+  s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = topBarHeight, visible = false })
+  s.mywibox = awful.wibar({
+    position = "top",
+    screen = s,
+    height = topBarHeight,
+    visible = false,
+  })
 
-    s.mywibox:setup {
-      layout = wibox.layout.align.horizontal,
-      {
-        -- Left widgets
-        layout = wibox.layout.fixed.horizontal,
-        s.mytaglist,
-      },
-      -- Middle widget
-      s.mytasklist,
-      {
-        -- Right widgets
-        layout = wibox.layout.fixed.horizontal,
-        wibox.layout.margin(systray, 5, 0, 5, 0),
-        volume,
-        memwidget,
-        cpuwidget,
-        tempwidget,
-        netwidget,
-        textClock,
-        --                                 L  R  T  B
-        wibox.layout.margin(s.mylayoutbox, 5, 2, 1, 2),
-      },
-    }
+  s.mywibox:setup {
+    layout = wibox.layout.align.horizontal,
+    {
+      -- Left widgets
+      layout = wibox.layout.fixed.horizontal,
+      s.mytaglist,
+    },
+    -- Middle widget
+    s.mytasklist,
+    {
+      -- Right widgets
+      layout = wibox.layout.fixed.horizontal,
+      wibox.layout.margin(systray, 5, 0, 5, 0),
+      volume,
+      memwidget,
+      cpuwidget,
+      tempwidget,
+      netwidget,
+      textClock,
+      --                                 L  R  T  B
+      wibox.layout.margin(s.mylayoutbox, 5, 2, 1, 2),
+    },
+  }
 end)
 
 root.buttons(awful.util.table.join(
