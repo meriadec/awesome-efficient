@@ -437,7 +437,7 @@ awful.rules.rules = {
       buttons = nil,
       keys = nil,
       focusable = false,
-      geometry = { height = 300, width = 3840, y = 2160 - 300 + 15 },
+      geometry = { height = 300, width = 3840, y = 2160 - 300 + 16 },
       sticky = true,
       below = true,
       titlebars_enabled = false,
