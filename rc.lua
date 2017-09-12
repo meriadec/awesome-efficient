@@ -429,7 +429,7 @@ awful.rules.rules = {
     },
     properties = { titlebars_enabled = true }
   },
-  -- floating
+  -- cava
   {
     rule = { instance = "urxvt" },
     properties = {
