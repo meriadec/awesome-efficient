@@ -9,4 +9,4 @@
 
 
   installation:
-  git clone https://github.com/meriadec/awesome-sombra ~/.config/awesome
+  git clone git@github.com:meriadec/awesome-efficient.git ~/.config/awesome
