@@ -41,7 +41,7 @@ local function runOnce(cmd)
 end
 
 runOnce("termite")
-runOnce("urxvt -e cava")
+-- runOnce("urxvt -e cava")
 
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
@@ -565,8 +565,8 @@ local setSmartBorders = function(c, firstRender)
 
 end
 
-client.connect_signal("request::titlebars", function(c) setSmartBorders(c, true) end)
-client.connect_signal("property::size", setSmartBorders)
+-- client.connect_signal("request::titlebars", function(c) setSmartBorders(c, true) end)
+-- client.connect_signal("property::size", setSmartBorders)
 
 client.connect_signal("mouse::enter", function(c)
   if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
