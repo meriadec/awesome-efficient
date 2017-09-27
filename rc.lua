@@ -346,7 +346,9 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey }, "c", function () awful.spawn(browser) end),
     awful.key({ modkey }, "l", function () awful.util.spawn("slock", false) end),
-    awful.key({ modkey }, "r", function () awful.util.spawn("rofi -show run", false) end)
+    awful.key({ modkey }, "r", function () awful.util.spawn("rofi -show run", false) end),
+    awful.key({ modkey }, "-", function () awful.util.spawn("s", false) end),
+    awful.key({ modkey, "Shift" }, "-", function () awful.spawn.with_shell("escrotum -s '%Y-%m-%d_$wx$h.png' | xargs add-shadow", false) end)
 )
 
 clientkeys = awful.util.table.join(
