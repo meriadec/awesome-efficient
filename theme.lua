@@ -1,7 +1,7 @@
 local theme                                     = {}
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome"
-theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
+theme.wallpaper                                 = theme.dir .. "/flat.png"
 
 theme.font                                      = "Meslo LG L 8"
 theme.fg_normal                                 = "#586e75"
@@ -12,9 +12,9 @@ theme.bg_widget                                 = "#BF616A88"
 theme.fg_widget                                 = "#232730"
 theme.bg_focus                                  = "#BF616A55"
 theme.bg_urgent                                 = "#1A1A1A"
-theme.border_width                              = 0
-theme.border_normal                             = "#2b303b00"
-theme.border_focus                              = "#ffffff55"
+theme.border_width                              = 3
+theme.border_normal                             = "#3D4752"
+theme.border_focus                              = "#C8854D"
 theme.border_marked                             = "#CC9393"
 theme.tasklist_bg_normal                        = "#00000000"
 theme.tasklist_fg_focus                         = "#bf616a"
@@ -64,7 +64,7 @@ theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.p
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 
-theme.useless_gap                               = 60
+theme.useless_gap                               = 40
 
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
