@@ -1,9 +1,9 @@
 local theme                                     = {}
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome"
-theme.wallpaper                                 = theme.dir .. "/flat.png"
+theme.wallpaper                                 = theme.dir .. "/wallpaper.jpg"
 
-theme.font                                      = "Meslo LG L 8"
+theme.font                                      = "PragmataPro 8"
 theme.fg_normal                                 = "#586e75"
 theme.fg_focus                                  = "#232730"
 theme.fg_urgent                                 = "#CC9393"
@@ -13,8 +13,8 @@ theme.fg_widget                                 = "#232730"
 theme.bg_focus                                  = "#BF616A55"
 theme.bg_urgent                                 = "#1A1A1A"
 theme.border_width                              = 3
-theme.border_normal                             = "#3D4752"
-theme.border_focus                              = "#C8854D"
+theme.border_normal                             = "#2B303B"
+theme.border_focus                              = "#ffffff"
 theme.border_marked                             = "#CC9393"
 theme.tasklist_bg_normal                        = "#00000000"
 theme.tasklist_fg_focus                         = "#bf616a"
