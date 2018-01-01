@@ -64,7 +64,7 @@ theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.p
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 
-theme.useless_gap                               = 40
+theme.useless_gap                               = 20
 
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
