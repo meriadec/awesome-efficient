@@ -458,16 +458,19 @@ end)
 
 local setSmartBorders = function(c, firstRender)
 
-  if c.floating then
-    return
-  end
-
   local b_string_color = gears.color("#ffffff33")
   local b_arrow_color = gears.color("#ffffffcc")
   local b_weight = 6
   local b_string_weight = 2
   local b_gutter = 12
   local b_arrow = 60
+
+  if c.floating then
+    b_weight = 0
+    b_string_weight = 0
+    b_gutter = 0
+    b_arrow = 0
+  end
 
   local side = b_weight + b_gutter
   local total_width = c.width
