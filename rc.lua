@@ -41,7 +41,7 @@ local function runOnce(cmd)
 end
 
 runOnce("termite")
--- runOnce("urxvt -e cava")
+runOnce("glava")
 
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
@@ -437,13 +437,13 @@ awful.rules.rules = {
   },
   -- cava
   {
-    rule = { instance = "urxvt" },
+    rule = { class = "GLava" },
     properties = {
       floating = true,
       buttons = nil,
       keys = nil,
       focusable = false,
-      geometry = { height = 300, width = 3840, y = 2160 - 300 + 16 },
+      geometry = { height = 300, width = 2560, y = 1440 - 300 + 16 },
       sticky = true,
       below = true,
       titlebars_enabled = false,
