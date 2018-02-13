@@ -357,6 +357,10 @@ clientkeys = awful.util.table.join(
     c:raise()
   end),
 
+  awful.key({ modkey }, "m", function (c)
+    c.maximized = not c.maximized
+    c:raise()
+  end),
   awful.key({ modkey }, "w", function (c) c.focusable = false end),
   awful.key({ modkey, "Shift" }, "c", function (c) c:kill() end),
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle),
