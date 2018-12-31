@@ -162,7 +162,7 @@ local function worker(args)
                     preset = bat_notification_critical_preset,
                     replaces_id = bat.id
                 }).id
-            elseif bat_now.perc <= 15 then
+            elseif bat_now.perc <= 5 then
                 bat.id = naughty.notify({
                     preset = bat_notification_low_preset,
                     replaces_id = bat.id

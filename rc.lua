@@ -7,8 +7,15 @@ local lain          = require("lain")
 local freedesktop   = require("freedesktop")
 local awful         = require("awful")
                       require("awful.autofocus")
+local smartBorders  = require("modules/smart-borders")
 
-local topBarHeight = 60
+local ENABLE_SMART_BORDERS = false
+local HIDPI = os.getenv("HIDPI") == "1"
+
+local topBarHeight = 40
+if HIDPI then
+  topBarHeight = 70
+end
 
 if awesome.startup_errors then
   naughty.notify({
@@ -39,33 +46,33 @@ local function runOnce(cmd)
   awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd))
 end
 
-runOnce("termite")
-runOnce("glava")
+runOnce("kitty")
 
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme.lua")
 
 local modkey     = "Mod4"
 local altkey     = "Mod1"
-local terminal   = "termite"
+local terminal   = "kitty"
 local editor     = "nvim"
 local browser    = os.getenv("BROWSER")
 local tagnames   = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 " }
 
 local initialLayouts = {
-  awful.layout.suit.tile,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile,
-  awful.layout.suit.tile,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.left,
+  awful.layout.suit.tile.left,
 }
 
 awful.layout.layouts = {
-  awful.layout.suit.tile,
+  awful.layout.suit.tile.left,
+  lain.layout.centerwork,
   awful.layout.suit.fair,
   awful.layout.suit.tile.bottom,
-  awful.layout.suit.floating,
+  awful.layout.suit.tile,
   -- awful.layout.suit.fair.horizontal,
   -- awful.layout.suit.floating,
   -- awful.layout.suit.tile,
@@ -103,10 +110,11 @@ local function infoText(widget, value, unit, label)
   widget:set_markup(
     " "
     .. label
-    .. " "
-    .. markup("#BF616Aaa", "" .. value .. "")
+    .. ""
+    .. markup("#BF616Aaa", "<b>" .. value .. "</b>")
     -- .. markup("#BF616Aaa", "<b>" .. value .. "</b>")
-    .. markup("#BF616A99", unit)
+    .. markup("#ffffff22", unit)
+    -- .. markup("#BF616A99", unit)
     .. " "
   )
 end
@@ -131,7 +139,7 @@ lain.widgets.calendar.attach(textClock, {
 })
 
 -- MEM
-local memwidget = lain.widgets.mem({ settings = function() infoText(widget, mem_now.used, "MB", "mem") end })
+local memwidget = lain.widgets.mem({ settings = function() infoText(widget, mem_now.used, "mb", "mem") end })
 
 -- CPU
 local cpuwidget = lain.widgets.cpu({ settings = function() infoText(widget, cpu_now.usage, "%", "cpu") end })
@@ -152,6 +160,13 @@ local netwidget = lain.widgets.net({
     widget:set_markup(markup("#7AC82E", " " .. net_now.received)
     .. "" ..
     markup("#46A8C3", " " .. net_now.sent .. " "))
+  end
+})
+
+-- Battery
+local bat = lain.widgets.bat({
+  settings = function()
+    infoText(widget, bat_now.perc, "%", "bat")
   end
 })
 
@@ -202,10 +217,17 @@ local function set_wallpaper(s)
   end
 end
 
+local function updateScreenPadding(nb)
+  local screen = awful.screen.focused()
+  local v = screen.padding.top + nb
+  awful.screen.padding(screen, { top = v, right = v, bottom = v, left = v })
+end
+
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
   set_wallpaper(s)
+  awful.screen.padding(s, { top = beautiful.screen_padding, right = beautiful.screen_padding, bottom = beautiful.screen_padding, left = beautiful.screen_padding })
   awful.tag(tagnames, s, initialLayouts)
 
   s.mylayoutbox = awful.widget.layoutbox(s)
@@ -221,32 +243,40 @@ awful.screen.connect_for_each_screen(function(s)
 
   s.mywibox = awful.wibar({
     position = "top",
+    border_width = 0,
+    border_color = "#22272f",
     screen = s,
     height = topBarHeight,
     visible = false,
   })
+
+  local WIDGET_MARGIN = 0
+  if HIDPI then
+    WIDGET_MARGIN = 8
+  end
 
   s.mywibox:setup {
     layout = wibox.layout.align.horizontal,
     {
       -- Left widgets
       layout = wibox.layout.fixed.horizontal,
-      s.mytaglist,
+      wibox.layout.margin(s.mytaglist, WIDGET_MARGIN, WIDGET_MARGIN + 20, WIDGET_MARGIN, WIDGET_MARGIN),
     },
     -- Middle widget
-    s.mytasklist,
+    wibox.layout.margin(s.mytasklist, WIDGET_MARGIN, WIDGET_MARGIN, WIDGET_MARGIN, WIDGET_MARGIN),
     {
       -- Right widgets
       layout = wibox.layout.fixed.horizontal,
       wibox.layout.margin(systray, 5, 0, 5, 0),
-      volume,
+      netwidget,
+      wibox.layout.margin(volume, 20, 0, 0, 0),
       memwidget,
       cpuwidget,
-      tempwidget,
-      netwidget,
-      textClock,
+      bat,
+      -- tempwidget,
+      wibox.layout.margin(textClock, 20, 10, 0, 0),
       --                                 L  R  T  B
-      wibox.layout.margin(s.mylayoutbox, 5, 2, 1, 2),
+      -- wibox.layout.margin(s.mylayoutbox, 5, 2, 1, 2),
     },
   }
 end)
@@ -307,6 +337,9 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(10) end),
     awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-10) end),
 
+    awful.key({ altkey, "Shift", "Control" }, "+", function () updateScreenPadding(10) end),
+    awful.key({ altkey, "Shift", "Control" }, "-", function () updateScreenPadding(-10) end),
+
     awful.key({ altkey }, "Tab", function ()
       awful.client.focus.history.previous()
       if client.focus then
@@ -322,15 +355,15 @@ globalkeys = awful.util.table.join(
     end),
 
     -- Standard program
-    awful.key({ modkey }, "Return", function () awful.spawn(terminal) end),
-    awful.key({ modkey, "Control" }, "r", awesome.restart),
+    awful.key({ modkey }, "Return",       function () awful.spawn(terminal) end),
+    awful.key({ modkey, "Control" }, "r",                       awesome.restart),
 
-    awful.key({ modkey, "Control" }, "s", function () awful.tag.incmwfact( 0.005) end),
-    awful.key({ modkey, "Control" }, "h", function () awful.tag.incmwfact(-0.005) end),
+    awful.key({ modkey, "Control" }, "h", function () awful.tag.incmwfact(0.005) end),
+    awful.key({ modkey, "Control" }, "s", function () awful.tag.incmwfact(-0.005) end),
     awful.key({ modkey, "Control" }, "t", function () awful.client.incwfact( 0.02) end),
     awful.key({ modkey, "Control" }, "n", function () awful.client.incwfact(-0.02) end),
 
-    awful.key({ modkey }, "space", function () awful.layout.inc( 1) end),
+    awful.key({ modkey }, "space",          function ()  awful.layout.inc(1) end),
     awful.key({ modkey, "Shift" }, "space", function () awful.layout.inc(-1) end),
 
     -- ALSA volume control
@@ -354,13 +387,24 @@ globalkeys = awful.util.table.join(
 clientkeys = awful.util.table.join(
   awful.key({ modkey }, "f", function (c)
     c.fullscreen = not c.fullscreen
+    if ENABLE_SMART_BORDERS == true then
+      if c.fullscreen == false then
+        smartBorders.set(c, true)
+      end
+    end
     c:raise()
   end),
 
   awful.key({ modkey }, "m", function (c)
     c.maximized = not c.maximized
+    if ENABLE_SMART_BORDERS == true then
+      if c.maximized == false then
+        smartBorders.set(c, true)
+      end
+    end
     c:raise()
   end),
+
   awful.key({ modkey }, "w", function (c) c.focusable = false end),
   awful.key({ modkey, "Shift" }, "c", function (c) c:kill() end),
   awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle),
@@ -435,7 +479,7 @@ awful.rules.rules = {
     },
     properties = { titlebars_enabled = true }
   },
-  -- cava
+  -- glava
   {
     rule = { class = "GLava" },
     properties = {
@@ -446,6 +490,17 @@ awful.rules.rules = {
       geometry = { height = 300, width = 2560, y = 1440 - 300 + 16 },
       sticky = true,
       below = true,
+      titlebars_enabled = false,
+    },
+  },
+  -- feh
+  {
+    rule = { class = "feh" },
+    properties = {
+      floating = true,
+      buttons = nil,
+      keys = nil,
+      sticky = true,
       titlebars_enabled = false,
     },
   },
@@ -460,122 +515,10 @@ client.connect_signal("manage", function (c)
   end
 end)
 
-local setSmartBorders = function(c, firstRender)
-
-  local b_string_color = gears.color("#2a2a2a")
-  local b_arrow_color = gears.color("#2a2a2a")
-  local b_weight = 15
-  local b_string_weight = 4
-  local b_gutter = 20
-  local b_arrow = 120
-
-  if c.floating then
-    b_weight = 0
-    b_string_weight = 0
-    b_gutter = 0
-    b_arrow = 0
-  end
-
-  local side = b_weight + b_gutter
-  local total_width = c.width
-  local total_height = c.height
-
-  -- for some reasons, the client height/width are not the same at first
-  -- render (when called by request title bar) and when resizing
-  if firstRender then
-    total_width = total_width + 2 * (b_weight + b_gutter)
-  else
-    total_height = total_height - 2 * (b_weight + b_gutter)
-  end
-
-  local imgTop = cairo.ImageSurface.create(cairo.Format.ARGB32, total_width, side)
-  local crTop  = cairo.Context(imgTop)
-
-  crTop:set_source(b_string_color)
-  crTop:rectangle(0, b_weight / 2 - b_string_weight / 2, total_width, b_string_weight)
-  crTop:fill()
-
-  crTop:set_source(b_arrow_color)
-  crTop:rectangle(0, 0, b_arrow, b_weight)
-  crTop:rectangle(0, 0, b_weight, side)
-  crTop:rectangle(total_width - b_arrow, 0, b_arrow, b_weight)
-  crTop:rectangle(total_width - b_weight, 0, b_weight, side)
-  crTop:fill()
-
-  local imgBot = cairo.ImageSurface.create(cairo.Format.ARGB32, total_width, side)
-  local crBot  = cairo.Context(imgBot)
-
-  crBot:set_source(b_string_color)
-  crBot:rectangle(0, side - b_weight / 2 - b_string_weight / 2, total_width, b_string_weight)
-  crBot:fill()
-
-  crBot:set_source(b_arrow_color)
-  crBot:rectangle(0, b_gutter, b_arrow, b_weight)
-  crBot:rectangle(0, 0, b_weight, side)
-  crBot:rectangle(total_width - b_weight, 0, b_weight, side)
-  crBot:rectangle(total_width - b_arrow, b_gutter, b_arrow, b_weight)
-  crBot:fill()
-
-  local imgLeft = cairo.ImageSurface.create(cairo.Format.ARGB32, side, total_height)
-  local crLeft  = cairo.Context(imgLeft)
-
-  crLeft:set_source(b_string_color)
-  crLeft:rectangle(b_weight / 2 - b_string_weight / 2, 0, b_string_weight, total_height)
-  crLeft:fill()
-
-  crLeft:set_source(b_arrow_color)
-  crLeft:rectangle(0, 0, b_weight, b_arrow - side)
-  crLeft:rectangle(0, total_height - b_arrow + side, b_weight, b_arrow - side)
-  crLeft:fill()
-
-  local imgRight = cairo.ImageSurface.create(cairo.Format.ARGB32, side, total_height)
-  local crRight  = cairo.Context(imgRight)
-
-  crRight:set_source(b_string_color)
-  crRight:rectangle(b_gutter + b_weight / 2 - b_string_weight / 2, 0, b_string_weight, total_height)
-  crRight:fill()
-
-  crRight:set_source(b_arrow_color)
-  crRight:rectangle(b_gutter, 0, b_weight, b_arrow - side)
-  crRight:rectangle(b_gutter, total_height - b_arrow + side, b_weight, b_arrow - side)
-  crRight:fill()
-
-  awful.titlebar(c, {
-    size = b_weight + b_gutter,
-    position = "top",
-    bg_normal = "transparent",
-    bg_focus = "transparent",
-    bgimage_focus = imgTop,
-  }) : setup { layout = wibox.layout.align.horizontal, }
-
-  awful.titlebar(c, {
-    size = b_weight + b_gutter,
-    position = "left",
-    bg_normal = "transparent",
-    bg_focus = "transparent",
-    bgimage_focus = imgLeft,
-  }) : setup { layout = wibox.layout.align.horizontal, }
-
-  awful.titlebar(c, {
-    size = b_weight + b_gutter,
-    position = "right",
-    bg_normal = "transparent",
-    bg_focus = "transparent",
-    bgimage_focus = imgRight,
-  }) : setup { layout = wibox.layout.align.horizontal, }
-
-  awful.titlebar(c, {
-    size = b_weight + b_gutter,
-    position = "bottom",
-    bg_normal = "transparent",
-    bg_focus = "transparent",
-    bgimage_focus = imgBot,
-  }) : setup { layout = wibox.layout.align.horizontal, }
-
+if ENABLE_SMART_BORDERS == true then
+  client.connect_signal("request::titlebars", function(c) smartBorders.set(c, true) end)
+  client.connect_signal("property::size", smartBorders.set)
 end
-
-client.connect_signal("request::titlebars", function(c) setSmartBorders(c, true) end)
-client.connect_signal("property::size", setSmartBorders)
 
 client.connect_signal("mouse::enter", function(c)
   if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
@@ -588,7 +531,6 @@ client.connect_signal("focus", function(c)
   -- no border for maximized clients
   if c.maximized_horizontal == true and c.maximized_vertical == true then
     c.border_width = 0
-  -- no borders if only 1 client visible
   elseif #awful.client.visible(mouse.screen) > 1 then
     c.border_width = beautiful.border_width
     c.border_color = beautiful.border_focus
